@@ -23,7 +23,11 @@
             Gestion des recettes <span class="caret"></span>
          </button>
          <ul class="dropdown-menu">
-            <li><a href="#">Ajouter à la liste</a></li>
+            <li><a (click)="toShoppingList()" 
+                  style="cursor: pointer">
+                  Ajouter à la liste
+               </a>
+            </li>
             <li><a href="#">Modifier la recette</a></li>
             <li><a href="#">Supprimer la recette</a></li>
          </ul>
