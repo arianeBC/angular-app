@@ -30,7 +30,7 @@
                   class="btn btn-success" 
                   type="submit"
                   [disabled]="!f.valid">
-                  Ajouter
+                  {{ editMode ? 'Modifier' : 'Ajouter' }}
                </button>
                <button 
                   class="btn btn-danger" 
