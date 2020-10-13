@@ -9,7 +9,12 @@
             [disabled]="!recipeForm.valid">
             Sauvegarder
           </button>
-          <button class="btn btn-danger" type="button">Annuler</button>
+          <button 
+            class="btn btn-danger" 
+            type="button"
+            (click)="onCancel()">
+            Annuler
+          </button>
         </div>
       </div>
 
