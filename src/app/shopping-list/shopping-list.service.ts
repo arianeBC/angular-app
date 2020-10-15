@@ -7,10 +7,12 @@ export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
 
-  private ingredients: Ingredient[] = [
-    new Ingredient('Carottes', 1),
-    new Ingredient('Tomates', 2),
-  ];
+  // private ingredients: Ingredient[] = [
+  //   new Ingredient('Carottes', 1),
+  //   new Ingredient('Tomates', 2),
+  // ];
+
+  private ingredients: Ingredient[] = [];
 
   getIngredients() {
     return this.ingredients.slice();
