@@ -12,13 +12,14 @@
          <ul class="nav navbar-nav">
             <li routerLinkActive="active"><a routerLink="/recettes">Recettes</a></li>
             <li routerLinkActive="active"><a routerLink="/liste-de-courses">Liste de courses</a></li>
+            <li routerLinkActive="active"><a routerLink="/connexion">Connexion</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" appDropdown>
                <a class="dropdown-toggle" role="button">Gestion <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                  <li><a style="cursor: pointer" (click)="onSaveData()">Sauvegarde</a></li>
-                  <li><a style="cursor: pointer" (click)="onFetchData()">Recherche</a></li>
+                  <li><a style="cursor: pointer" (click)="onSaveData()">Sauvegarder les modifications</a></li>
+                  <li><a style="cursor: pointer" (click)="onFetchData()">Afficher toutes les recettes</a></li>
                </ul>
             </li>
          </ul>
