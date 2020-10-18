@@ -27,10 +27,10 @@
       </div>
       <div>
         <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">
-          {{ isLoginMode ? "S'inscrire" : 'Se connecter' }}
+          {{ isLoginMode ? 'Se connecter' : "S'inscrire" }}
         </button>
         <button class="btn btn-primary" type="button" (click)="onSwitchMode()">
-          {{ isLoginMode ? 'Se connecter' : "S'inscrire" }}
+          {{ isLoginMode ? "S'inscrire" : 'Se connecter' }}
         </button>
       </div>
     </form>
