@@ -10,16 +10,28 @@
 
       <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
          <ul class="nav navbar-nav">
-            <li routerLinkActive="active"><a routerLink="/recettes">Recettes</a></li>
-            <li routerLinkActive="active"><a routerLink="/liste-de-courses">Liste de courses</a></li>
-            <li routerLinkActive="active"><a routerLink="/connexion">Connexion</a></li>
+            <li routerLinkActive="active" *ngIf="isAuthenticated">
+               <a routerLink="/recettes">Recettes</a></li>
+            <li routerLinkActive="active">
+               <a routerLink="/liste-de-courses">Liste de courses</a>
+            </li>
+            <li routerLinkActive="active" *ngIf="!isAuthenticated">
+               <a routerLink="/connexion">Connexion</a>
+            </li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown" appDropdown>
+            <li *ngIf="isAuthenticated">
+               <a style="cursor: pointer" (click)="onLogout()">Déconnexion</a>
+            </li>
+            <li class="dropdown" appDropdown *ngIf="isAuthenticated">
                <a class="dropdown-toggle" role="button">Gestion <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                  <li><a style="cursor: pointer" (click)="onSaveData()">Sauvegarder les modifications</a></li>
-                  <li><a style="cursor: pointer" (click)="onFetchData()">Afficher toutes les recettes</a></li>
+                  <li>
+                     <a style="cursor: pointer" (click)="onSaveData()">Sauvegarder les modifications</a>
+                  </li>
+                  <li>
+                     <a style="cursor: pointer" (click)="onFetchData()">Afficher toutes les recettes</a>
+                  </li>
                </ul>
             </li>
          </ul>
