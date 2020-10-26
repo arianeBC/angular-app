@@ -19,6 +19,11 @@ export interface AuthResponseData {
 @Injectable()
 export class AuthEffects {
   @Effect()
+  authSignup = this.actions$.pipe(
+    ofType(AuthActions.SIGNUP_START)
+  );
+
+  @Effect()
   authLogin = this.actions$.pipe(
     ofType(AuthActions.LOGIN_START),
     switchMap((authData: AuthActions.LoginStart) => {
@@ -36,7 +41,7 @@ export class AuthEffects {
             const expirationDate = new Date(
               new Date().getTime() + +resData.expiresIn * 1000
             );
-            return new AuthActions.Login({
+            return new AuthActions.AuthenticateSuccess({
               email: resData.email, 
               userID: resData.localId, 
               token: resData.idToken, 
@@ -46,7 +51,7 @@ export class AuthEffects {
           catchError(errorRes => {
             let errorMessage = 'Désolé, une erreur est survenue'
             if(!errorRes.error || !errorRes.error.error) {
-              return of(new AuthActions.LoginFail(errorMessage));
+              return of(new AuthActions.AuthenticateFail(errorMessage));
             }
             switch(errorRes.error.error.message) {
               case 'EMAIL_EXISTS':
@@ -59,7 +64,7 @@ export class AuthEffects {
                 errorMessage = "Votre nom d'utilisateur ou votre mot de passe ne correspondent pas. Veuillez réessayer.";
                 break;
             }
-            return of(new AuthActions.LoginFail(errorMessage));
+            return of(new AuthActions.AuthenticateFail(errorMessage));
           })
         );
     })
@@ -67,7 +72,7 @@ export class AuthEffects {
 
   @Effect({dispatch: false})
   authSuccess = this.actions$.pipe(
-    ofType(AuthActions.LOGIN), 
+    ofType(AuthActions.AUTHENTICATE_SUCCESS), 
     tap(() => {
       this.router.navigate(['/']);
     })
